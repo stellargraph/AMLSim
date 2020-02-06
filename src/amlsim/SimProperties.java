@@ -25,7 +25,7 @@ public class SimProperties {
     private int normalTxInterval;
 //    private int sarTxInterval;
     private float minTxAmount;  // Minimum base (normal) transaction amount
-    private float maxTxAmount;  // Maximum base (suspicious) transaction amount
+    private float maxTxAmount;  // Maximum base (normal) transaction amount
 
     SimProperties(String jsonName) throws IOException{
         String jsonStr = loadTextFile(jsonName);
@@ -42,7 +42,7 @@ public class SimProperties {
         maxTxAmount = defaultProp.getFloat("max_amount");
 
         System.out.printf("General transaction interval: %d\n", normalTxInterval);
-        System.out.printf("Base transaction amount: Normal = %f, Suspicious= %f\n", minTxAmount, maxTxAmount);
+        System.out.printf("Normal transaction amount: min. = %f, max. = %f\n", minTxAmount, maxTxAmount);
         
         cashInProp = defaultProp.getJSONObject("cash_in");
         cashOutProp = defaultProp.getJSONObject("cash_out");
@@ -93,11 +93,11 @@ public class SimProperties {
         return normalTxInterval;
     }
 
-    public float getNormalBaseTxAmount(){
+    public float getNormalMinTxAmount(){
         return minTxAmount;
     }
 
-    public float getSuspiciousTxAmount(){
+    public float getNormalMaxTxAmount(){
         return maxTxAmount;
     }
 
